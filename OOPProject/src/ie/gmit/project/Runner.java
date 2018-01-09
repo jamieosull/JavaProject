@@ -1,10 +1,12 @@
-package ie.gmit.sw;
+package ie.gmit.project;
 
 public class Runner {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		//new menuOptions.show();
+		
 
 	}
 
+	
 }
