@@ -1,29 +1,17 @@
 package ie.gmit.project;
 
-public abstract class Poison extends Shingle {
+public class Poison extends Shingle {
 	
-	private int docId;
-	private int hashCode;
+	private int doc1;
+	private int doc2;
+	private int shingleSize;
 	
+	public Poison(int doc1, int doc2, int shingleSize ) {
+		super(doc1, doc2, shingleSize);
 	
-	/**
-	 * 
-	 */
-
-	public Poison() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	/**
-	 * 
-	 */
-
-
-	public Poison(int docId, int hashcode) {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	// Source -> Generate constructors FROM superclass	
+
+	
+
 }

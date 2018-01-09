@@ -3,6 +3,9 @@
  */
 package ie.gmit.project;
 
+import java.io.*;
+import java.util.*;
+
 /**
  * @author jamieosullivan
  *
@@ -10,34 +13,33 @@ package ie.gmit.project;
 public class Menu extends Runner {
 	
 	
+	@SuppressWarnings("resource")
 	public static void menuOptions() {
-	
+		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("Enter 1 to read filenames ");
-		System.out.println("Enter 2 to ");
-		System.out.println("Enter 3 to compare the files ");
-		System.out.println("Enter 4 to Exit ");
+		String file1String = null;
+	    String file2String = null;
+	    
+	 // File variables
+    	File file1 = new File(file1String);
+    	File file2 = new File(file2String);
+    	
+    	
 
-		
-		boolean alive=true;
-		
-		while(alive){
-			//Draw the menu
-			switch(4){
-			
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4:
-				break;
-			
-			}
-			
-		}
-		
+    	System.out.println("========================================================");
+    	System.out.println(" Welcome to the Measuring Document Similarity Applicaton");
+    	System.out.println("=========================================================");
+
+    	//DelBelloGallico.txt
+    	System.out.println("Please enter the filename of file 1 (.txt): ");
+     	file1String = ("Files/" + scanner.next() +".txt");
+	
+     	//WarAndPace-LeoTolstoy.txt
+     	System.out.println("Please enter the filename of file 2: ");
+    	file2String = ("Files/" + scanner.next() +".txt");
+
+   
+   
 		
 		
 
