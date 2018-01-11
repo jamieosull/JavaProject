@@ -10,8 +10,6 @@ import java.util.Comparator;
  *
  */
 
-
-
 public class Shingle implements Comparator {
 	private int docID;
 	private int hashCode;
@@ -81,11 +79,4 @@ public class Shingle implements Comparator {
 		}
 		
 
-	
-
-
-
-	
-	
-	
 }

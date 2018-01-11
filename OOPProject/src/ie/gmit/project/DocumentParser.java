@@ -21,17 +21,13 @@ public class DocumentParser implements Runnable {
 	private int shingleSize, k;
 	private Deque<String> buffer = new LinkedList<>();
 	private int docID;
-	
-	
-
-	
 
 	/**
 	 * @param queue
-	 * @param file
-	 * @param shingleSize
+	 * @param file The files been used.
+	 * @param shingleSize  integer of count of words in shingle
 	 * @param k
-	 * @param docID
+	 * @param docID  Two .txt files ID
 	 */
 	public DocumentParser(BlockingQueue<Shingle> queue, String file, int shingleSize, int k, int docID) {
 		super();
@@ -42,56 +38,11 @@ public class DocumentParser implements Runnable {
 		this.docID = docID;
 	}
 
-	/*public DocumentParser(String file, BlockingQueue<Shingle> q, int shingleSize, int k) {
-		this.queue = q;
-		// InputStringReader
-	}*/
 	
-	
-	
-
-
-
-
 	public DocumentParser(String f1, BlockingQueue<Shingle> q, int shingleSize2, int k2) {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
-	/*public void run() {
-
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
-
-		String line = null;
-
-		try {
-			while ((line = br.readLine()) != null) {
-				String uLine = line.toUpperCase();
-				String[] words = uLine.split(" "); // Can also take a regexpression
-				addWordsToBuffer(words);
-				Shingle s = getNextShingle();
-				queue.put(s); // Blocking method. Add is not a blocking method
-
-			}
-		
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		flushBuffer();
-		try {
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}//run*/
-	
 	public void parse() throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 		String line = null;
@@ -155,11 +106,11 @@ public class DocumentParser implements Runnable {
 		}
 	}// Flush buffer
 
+
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }// Document Parser

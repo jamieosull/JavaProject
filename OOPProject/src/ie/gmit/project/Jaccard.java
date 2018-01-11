@@ -12,10 +12,5 @@ import javax.swing.text.Document;
  *
  */
 public interface Jaccard {
-	
-	public List<Shingle> createShingles(Document docID, int id);
-	public List<Integer> createHashCodes(Document docID);
-	public double jaccardSimilarity(Integer[] a, Integer[] b);
-	public void minHash(List<Shingle> Shingles, List<Shingle> Shingles2);
 
 }
