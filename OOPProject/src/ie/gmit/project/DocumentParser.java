@@ -4,9 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Deque;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 
 public class DocumentParser implements Runnable {
@@ -15,13 +20,10 @@ public class DocumentParser implements Runnable {
 	private String file;
 	private int shingleSize, k;
 	private Deque<String> buffer = new LinkedList<>();
-	private int doc1;
-	private int doc2;
+	private int docID;
+	
+	
 
-	/*public DocumentParser(String file, BlockingQueue<Shingle> q, int shingleSize, int k) {
-		this.queue = q;
-		// InputStringReader
-	}*/
 	
 
 	/**
@@ -29,17 +31,33 @@ public class DocumentParser implements Runnable {
 	 * @param file
 	 * @param shingleSize
 	 * @param k
+	 * @param docID
 	 */
-	public DocumentParser(BlockingQueue<Shingle> queue, String file, int shingleSize, int k) {
+	public DocumentParser(BlockingQueue<Shingle> queue, String file, int shingleSize, int k, int docID) {
 		super();
 		this.queue = queue;
 		this.file = file;
 		this.shingleSize = shingleSize;
 		this.k = k;
+		this.docID = docID;
 	}
 
+	/*public DocumentParser(String file, BlockingQueue<Shingle> q, int shingleSize, int k) {
+		this.queue = q;
+		// InputStringReader
+	}*/
+	
+	
+	
 
-	public void run() {
+
+
+
+	public DocumentParser(String f1, BlockingQueue<Shingle> q, int shingleSize2, int k2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	/*public void run() {
 
 		BufferedReader br = null;
 		try {
@@ -48,7 +66,7 @@ public class DocumentParser implements Runnable {
 			e1.printStackTrace();
 		}
 
-		String line = "";
+		String line = null;
 
 		try {
 			while ((line = br.readLine()) != null) {
@@ -59,6 +77,7 @@ public class DocumentParser implements Runnable {
 				queue.put(s); // Blocking method. Add is not a blocking method
 
 			}
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -71,10 +90,25 @@ public class DocumentParser implements Runnable {
 			e.printStackTrace();
 		}
 
+	}//run*/
+	
+	public void parse() throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			if (line.length() > 0) {
+				String lineLower = line.toLowerCase();
+				String[] words = lineLower.split("\\s+");
+				Shingle s = getNextShingle(); 
+				queue.put(s); // blocking call
+			}
+		}
+		flushBuffer();
+		br.close();
 	}
+	
 
 	private void addWordsToBuffer(String[] words) {
-
 		for (String s : words) {
 			buffer.add(s);
 
@@ -92,7 +126,7 @@ public class DocumentParser implements Runnable {
 			} // if
 		} // while
 		if (sb.length() > 0) {
-			return (new Shingle(doc1, doc2, sb.toString().hashCode()));
+			return (new Shingle(docID, sb.toString().hashCode()));
 		} // if
 		else {
 			return (null);
@@ -112,7 +146,7 @@ public class DocumentParser implements Runnable {
 				}
 			} else {
 				try {
-					queue.put(new Poison(doc1, doc2, 0));
+					queue.put(new Poison(docID, hashCode()));
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -120,5 +154,12 @@ public class DocumentParser implements Runnable {
 			}
 		}
 	}// Flush buffer
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }// Document Parser

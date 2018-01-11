@@ -11,85 +11,80 @@ import java.util.Comparator;
  */
 
 
-@SuppressWarnings("rawtypes")
+
 public class Shingle implements Comparator {
-	private int doc0;
-	private int doc1;
+	private int docID;
 	private int hashCode;
-
-
 	/**
-	 * @param doc0
-	 * @param doc1
+	 * @param docID
 	 * @param hashCode
 	 */
-	public Shingle(int doc0, int doc1, int hashCode) {
+	public Shingle(int docID, int hashCode) {
 		super();
-		this.doc0 = doc0;
-		this.doc1 = doc1;
+		this.docID = docID;
 		this.hashCode = hashCode;
 	}
-
 	/**
-	 * @return the doc0
+	 * @return the docID
 	 */
-	public int getDoc0() {
-		return doc0;
+	public int getDocID() {
+		return docID;
 	}
-
 	/**
-	 * @param doc0 the doc0 to set
+	 * @param docID the docID to set
 	 */
-	public void setDoc0(int doc0) {
-		this.doc0 = doc0;
+	public void setDocID(int docID) {
+		this.docID = docID;
 	}
-
-	/**
-	 * @return the doc1
-	 */
-	public int getDoc1() {
-		return doc1;
-	}
-
-	/**
-	 * @param doc1 the doc1 to set
-	 */
-	public void setDoc1(int doc1) {
-		this.doc1 = doc1;
-	}
-
 	/**
 	 * @return the hashCode
 	 */
 	public int getHashCode() {
 		return hashCode;
 	}
-
 	/**
 	 * @param hashCode the hashCode to set
 	 */
 	public void setHashCode(int hashCode) {
 		this.hashCode = hashCode;
 	}
-	
-	
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Shingle [doc0=" + doc0 + ", doc1=" + doc1 + ", hashCode=" + hashCode + "]";
+		return "Shingle [docID=" + docID + ", hashCode=" + hashCode + "]";
 	}
-
-	@Override
-	public int compare(Object o1, Object o2) {
-		return 0;
-	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	
+	// must override hashcode and equals
+		@Override
+		public boolean equals(Object arg0) {
+			// TODO Auto-generated method stub
+			return super.equals(arg0);
+		}
+		
+		@Override
+		public int hashCode() {
+			// TODO Auto-generated method stub
+			return super.hashCode();
+		}
+		
+		
+		
+		@Override
+		public int compare(Object o1, Object o2) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		
 
 	
 
-	
+
+
 	
 	
 	
